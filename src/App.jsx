@@ -13,6 +13,7 @@ import { waitForTransactionReceipt } from "wagmi/actions";
 import { config } from "./blockchain/config";
 import toast from "react-hot-toast";
 import "./App.css";
+import Web3Button from "./web3button";
 
 function App() {
   //const [walletAddress, setWalletAddress] = "";
@@ -130,85 +131,82 @@ function App() {
     );
   };
 
-  // const handleGetToken = async () => {
-  //   // Implement token retrieval logic here
-  //   await toast.promise((async () => {
-  //     const hash = await writeContractAsync({ abi: STAKE_TOKEN_ABI, functionName: "transferToken", address: STAKE_TOKEN_ADDRESS });
-  //     await waitForTransactionReceipt(config, {
-  //       hash,
-  //       pollingInterval: 1000,
-  //       confirmations: 2
-  //     })
-  //   })(), {
-  //     error: "Error retrieving token",
-  //     loading: "Retrieving token",
-  //     success: "Token retrieved",
-  //   })
+  const handleGetToken = async () => {
+    // Implement token retrieval logic here
+    await toast.promise((async () => {
+      const hash = await writeContractAsync({ abi: STAKE_TOKEN_ABI, functionName: "transferToken", address: STAKE_TOKEN_ADDRESS });
+      await waitForTransactionReceipt(config, {
+        hash,
+        pollingInterval: 1000,
+        confirmations: 2
+      })
+    })(), {
+      error: "Error retrieving token",
+      loading: "Retrieving token",
+      success: "Token retrieved",
+    })
+  }
+  
+
+  // async function connectWallet() {
+  //   if (typeof window.ethereum !== "undefined") {
+  //     await requestAccount();
+
+  //     const provider = new ethers.provider.Web3Provider(window.ethereum);
+  //   }
   // }
-  async function requestAccount() {
-    if (window.ethereum) {
-      console.log("detected");
-      try {
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        setWalletAddress(accounts[0]);
-        console.log(accounts[0]);
-      } catch (error) {
-        console.log("Error Connecting");
-      }
-    } else {
-      alert("Meta mask not detected!");
-    }
-  }
 
-  async function connectWallet() {
-    if (typeof window.ethereum !== "undefined") {
-      await requestAccount();
-
-      const provider = new ethers.provider.Web3Provider(window.ethereum);
-    }
-  }
-
-  const handleBalance = (data) => {
-    setBalance(data);
-  };
+  // const handleBalance = (data) => {
+  //   setBalance(data);
+  // };
 
   return (
     <>
-      <Wallet sendWalletBalance={handleBalance} />
+      {/* <Wallet sendWalletBalance={handleBalance} /> */}
+      <nav className="navbar">
+        <div className="web3-button-container">
+          <Web3Button className="w3m-button" />
+        </div>
+      </nav>
       <div className="card">
         <h1>
-          <span>The most secure liquid staking platform</span>
-          Stake, earn, and manage your assets seamlessly with access to over 600
-          cryptocurrencies.
+          <span className="glitch">StakeFlow Protocol</span>
+          <p>Stake, earn, and manage your assets seamlessly with access to over 600
+          cryptocurrencies.</p>
         </h1>
 
-        <div className="login-box">
+        <hr className='seperator' />
+        <button className='send-btn_1' onClick={handleGetToken}>Get Token</button>
+     
+        <div className="login-box ">
           <form>
             <div className="user-box">
               <input
                 type="text"
                 name=""
                 required=""
+                placeholder="Stake XFI"
                 onChange={(e) => setAmount(e.target.value)}
               />
-              <label>Stake XFI</label>
+          
             </div>
             <center>
-              <a href="#" onClick={handleStakeToken} disabled={isDisconnected}>
+              {/* <a href="#"  onClick={handleStakeToken} disabled={isDisconnected}>
                 STAKE
                 <span></span>
-              </a>
+              </a> */}
+              <button onClick={handleStakeToken}> STAKE</button>
+
             </center>
             <div className="user-box">
               <input
                 type="text"
                 name=""
                 required=""
+                placeholder="Withdraw XFI"
                 onChange={(e) => setWithDraw(e.target.value)}
               />
-              <label>Withdraw XFI</label>
+             
             </div>
             <center>
               <a href="#" onClick={handleWithdraw} disabled={isDisconnected}>
@@ -217,13 +215,13 @@ function App() {
               </a>
             </center>
             <div className="balance">
-              <label>
+              <button>
                 Stake XFI - Your balance:{" "}
                 {parseInt(stakeSTKBalance) / 10 ** 18 || 0}
-              </label>
+              </button>
               <label>
                 Withdraw XFI - Amount Staked:{" "}
-                {parseInt(stakeSTKBalance) / 10 ** 18 || 0}
+                {(parseInt(STKStaked) / (10 ** 18)) || 0} STK
               </label>
             </div>
           </form>

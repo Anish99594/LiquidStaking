@@ -26,8 +26,12 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 100rem;
+  min-height: 62rem;
+  transform: scale(0.8);
+  transform-origin: 652px 188px;
+  overflow: hidden;
+  overflow: hidden;
 }
 
 h1 {

@@ -194,7 +194,10 @@ function App() {
                 STAKE
                 <span></span>
               </a> */}
-              <button onClick={handleStakeToken}> STAKE</button>
+              <button  onClick={(e) => {
+                e.preventDefault();
+                handleStakeToken();
+              }}> STAKE</button>
 
             </center>
             <div className="user-box">
@@ -208,7 +211,7 @@ function App() {
              
             </div>
             <center>
-              <a href="#" onClick={handleWithdraw} disabled={isDisconnected}>
+              <a href="#" onClick={(e) => {e.preventDefault();handleWithdraw()}} disabled={isDisconnected}>
                 WITHDRAW
                 <span></span>
               </a>

@@ -211,7 +211,7 @@ function App() {
              
             </div>
             <center>
-              <a href="#" onClick={(e) => {e.preventDefault();handleWithdraw()}} disabled={isDisconnected}>
+              <a href="#" onClick={(e) => {e.preventDefault();handleWithdraw();}} disabled={isDisconnected}>
                 WITHDRAW
                 <span></span>
               </a>

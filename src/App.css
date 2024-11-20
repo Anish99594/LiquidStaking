@@ -1,5 +1,7 @@
 body {
-  background: linear-gradient(90deg , #000000, #393838);
+  background: linear-gradient(86deg , #000000, #393838);
+  /* background-image: url('../public/image2.jpg'); */
+  
 }
 button,
 button::after {
@@ -19,6 +21,10 @@ input::placeholder {
   font-style: italic; /* Italic style */
   font-size: 18px; /* Font size */
   
+}
+.fontfamily{
+  font-style: italic; /* Italic style */
+  font-size: 17px
 }
 
 button::after {

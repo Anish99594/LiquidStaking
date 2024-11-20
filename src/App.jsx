@@ -171,9 +171,8 @@ function App() {
       <div className="card">
         <h1>
           <span className="glitch">StakeFlow Protocol</span>
-          <p>Stake, earn, and manage your assets seamlessly with access to over 600
-          cryptocurrencies.</p>
-        </h1>
+          <span className="fontfamily"><strong>Stake, earn, and manage seamlessly</strong> with StakeFlow Protocol. Access liquid staking derivatives (LSDs) to unlock your staked assets' value, combining <strong>network security</strong> with DeFi utility and liquidity.</span>
+          </h1>
 
         <hr className='seperator' />
         <button className='send-btn_1' onClick={handleGetToken}>Get Token</button>
